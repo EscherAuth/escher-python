@@ -1,4 +1,4 @@
-.PHONY: clean copy/src build build/signer build/validator copy/dist test
+.PHONY: clean copy/src build build/signer build/validator copy/dist test build/wheel dist/wheel
 
 BUILDDIR:=build
 DISTDIR:=dist
@@ -9,8 +9,7 @@ clean:
 clean/dist:
 	rm -rf ${DISTDIR}
 
-build: clean copy/src build/signer build/validator copy/dist test build/wheel
-# build: clean/dist copy/dist build/wheel
+build: clean copy/src build/signer build/validator copy/dist test
 
 test:
 	PYTHONPATH=$(DISTDIR) python test/test_*.py
@@ -34,7 +33,7 @@ build/validator:
 	cd $(BUILDDIR)/validator && $ go build -buildmode=c-shared -o validator.so .
 
 build/wheel:
-	cd $(DISTDIR) && python setup.py bdist_wheel
+	cd $(DISTDIR) && python setup.py sdist
 
-dist/wheel:
-	cd $(DISTDIR) python setup.py bdist_egg register upload
+dist/wheel: build/wheel
+	twine upload $(DISTDIR)/dist/*

@@ -1,11 +1,5 @@
 from setuptools import setup, Distribution
 
-
-class BinaryDistribution(Distribution):
-    def has_ext_modules(self):
-        return True
-
-
 setup(
     name='escherauth-go',
     description='Python wrapper for the Go implementation of the AWS4 compatible Escher HTTP request signing protocol.',
@@ -21,7 +15,6 @@ setup(
     package_data={
         'escherauth_go': ['signer.so', 'validator.so'],
     },
-    distclass=BinaryDistribution,
     classifiers=[
         'Development Status :: 4 - Beta',
         'Environment :: Console',

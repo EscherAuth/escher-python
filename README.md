@@ -7,7 +7,7 @@ Python wrapper for the [Go implementation](https://github.com/EscherAuth/escher)
 Via PIP:
 
 ```sh
-pip install escherauth_go
+pip install escherauth-go
 ```
 
 ## Usage
@@ -82,4 +82,36 @@ try:
 except EscherValidatorError as e:
     # Handle validation error
     print(e)
+```
+
+## Test
+
+```sh
+make test
+```
+
+## Build
+
+### Install build requirements
+
+```sh
+pip install -r requirements.txt
+```
+
+```sh
+make build
+```
+
+### Build wheel package
+
+```sh
+make build/wheel
+```
+
+The .whl file will be created in the dist/dist folder
+
+## Upload package
+
+```sh
+make dist/wheel
 ```
