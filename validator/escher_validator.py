@@ -2,10 +2,20 @@ import os
 import datetime
 import json
 from urllib.parse import urlsplit, urlunsplit
-from ctypes import cdll, cast, c_char_p
+from ctypes import cdll, cast, c_char_p, c_char, POINTER
 
 SO_PATH = os.path.dirname(os.path.abspath(__file__))
 LIB = cdll.LoadLibrary(os.path.join(SO_PATH, 'validator.so'))
+
+LIB = cdll.LoadLibrary(os.path.join(SO_PATH, 'validator.so'))
+LIB.ValidateRequest.restype = POINTER(c_char)
+LIB.ValidateRequest.argtypes = [
+    POINTER(c_char),
+    POINTER(c_char),
+    POINTER(c_char),
+    POINTER(c_char),
+    POINTER(c_char)
+]
 
 
 class EscherValidatorError(Exception):
