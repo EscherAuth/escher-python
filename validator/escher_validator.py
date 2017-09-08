@@ -1,13 +1,28 @@
 import os
 import datetime
 import json
+import platform
 from urllib.parse import urlsplit, urlunsplit
 from ctypes import cdll, cast, c_char_p, c_char, POINTER
 
-SO_PATH = os.path.dirname(os.path.abspath(__file__))
-LIB = cdll.LoadLibrary(os.path.join(SO_PATH, 'validator.so'))
 
-LIB = cdll.LoadLibrary(os.path.join(SO_PATH, 'validator.so'))
+class EscherValidatorError(Exception):
+    pass
+
+
+filename = None
+os_name = platform.system().lower()
+
+if os_name == 'linux':
+    filename = 'validator-linux-amd64.so'
+elif os_name == 'darwin':
+    filename = 'validator-darwin-10.10-amd64.dylib'
+else:
+    raise EscherValidatorError('Platform %s not supported' % os_name)
+
+
+SO_PATH = os.path.dirname(os.path.abspath(__file__))
+LIB = cdll.LoadLibrary(os.path.join(SO_PATH, filename))
 LIB.ValidateRequest.restype = POINTER(c_char)
 LIB.ValidateRequest.argtypes = [
     POINTER(c_char),
@@ -16,10 +31,6 @@ LIB.ValidateRequest.argtypes = [
     POINTER(c_char),
     POINTER(c_char)
 ]
-
-
-class EscherValidatorError(Exception):
-    pass
 
 
 class EscherValidator:

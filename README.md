@@ -94,7 +94,11 @@ make test
 
 ### Install build requirements
 
+Install [xgo](https://github.com/karalabe/xgo)
+
 ```sh
+docker pull karalabe/xgo-latest
+go get github.com/karalabe/xgo
 pip install -r requirements.txt
 ```
 

@@ -21,16 +21,19 @@ copy/src:
 copy/dist:
 	mkdir -p $(DISTDIR)/escherauth_go
 	cp $(BUILDDIR)/signer/escher_signer.py $(DISTDIR)/escherauth_go/
-	cp $(BUILDDIR)/signer/signer.so $(DISTDIR)/escherauth_go/
+	cp $(BUILDDIR)/signer/signer-linux-amd64.so $(DISTDIR)/escherauth_go/
+	cp $(BUILDDIR)/signer/signer-darwin-10.10-amd64.dylib $(DISTDIR)/escherauth_go/
 	cp $(BUILDDIR)/validator/escher_validator.py $(DISTDIR)/escherauth_go/
-	cp $(BUILDDIR)/validator/validator.so $(DISTDIR)/escherauth_go/
+	cp $(BUILDDIR)/validator/validator-linux-amd64.so $(DISTDIR)/escherauth_go/
+	cp $(BUILDDIR)/validator/validator-darwin-10.10-amd64.dylib $(DISTDIR)/escherauth_go/
 	cp setup.py $(DISTDIR)/
 
 build/signer:
-	cd $(BUILDDIR)/signer && $ go build -buildmode=c-shared -o signer.so .
+	cd $(BUILDDIR)/signer && xgo -buildmode=c-shared -targets "linux/amd64,darwin-10.10/amd64" .
+	
 
 build/validator:
-	cd $(BUILDDIR)/validator && $ go build -buildmode=c-shared -o validator.so .
+	cd $(BUILDDIR)/validator && xgo -buildmode=c-shared -targets "linux/amd64,darwin-10.10/amd64" .
 
 build/wheel:
 	cd $(DISTDIR) && python setup.py sdist

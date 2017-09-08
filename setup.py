@@ -3,7 +3,7 @@ from setuptools import setup, Distribution
 setup(
     name='escherauth-go',
     description='Python wrapper for the Go implementation of the AWS4 compatible Escher HTTP request signing protocol.',
-    version='0.1.1',
+    version='0.1.3',
     author='Istvan Szenasi',
     author_email='szeist@gmail.com',
     license='MIT',
@@ -13,7 +13,7 @@ setup(
     packages=['escherauth_go'],
     py_modules=['escherauth_go.escher_signer', 'escherauth_go.escher_validator'],
     package_data={
-        'escherauth_go': ['signer.so', 'validator.so'],
+        'escherauth_go': ['*.so', '*.dylib']
     },
     classifiers=[
         'Development Status :: 4 - Beta',
