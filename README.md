@@ -99,6 +99,11 @@ Install [xgo](https://github.com/karalabe/xgo)
 ```sh
 docker pull karalabe/xgo-latest
 go get github.com/karalabe/xgo
+```
+
+### Install python requirements
+
+```sh
 pip install -r requirements.txt
 ```
 
