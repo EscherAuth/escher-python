@@ -8,7 +8,7 @@ DISTDIR:=dist
 clean:
 	rm -rf $(BUILDDIR) $(DISTDIR)
 
-build: clean copy/src build/signer build/validator copy/dist test
+build: clean copy/src build/signer build/validator copy/dist
 
 test:
 	PYTHONPATH=$(DISTDIR) python test/test_*.py

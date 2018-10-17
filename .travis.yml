@@ -1,14 +1,18 @@
-language: python
-python:
-  - '3.6'
-install:
-  - 'pip install pipenv'
-  - 'pipenv sync'
 matrix:
-  os: linux
-  dist: xenial
-  services:
-    - docker
-  go: 1.11.1
-  script:
-    - make build
+  include:
+    - language: go
+      os: linux
+      dist: trusty
+      services:
+        - docker
+      go: 1.11.1
+      script: make build
+
+    - language: python
+      python:
+        - '3.6'
+      install:
+        - 'pip install pipenv'
+        - 'pipenv sync'
+      script:
+        - make test
