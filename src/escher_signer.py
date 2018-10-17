@@ -1,44 +1,12 @@
-import os
 import datetime
 import json
-import platform
-from ctypes import cdll, cast, c_char, c_char_p, c_int, POINTER
+from ctypes import c_char_p, c_int, cast
+from .signer_lib_loader import load_signer_lib
 
+GO_SIGNER = load_signer_lib()
 
 class EscherSignerError(Exception):
     pass
-
-
-filename = None
-os_name = platform.system().lower()
-
-if os_name == 'linux':
-    filename = 'signer-linux-amd64.so'
-elif os_name == 'darwin':
-    filename = 'signer-darwin-10.10-amd64.dylib'
-else:
-    raise EscherSignerError('Platform %s not supported' % os_name)
-
-SO_PATH = os.path.dirname(os.path.abspath(__file__))
-GO_SIGNER = cdll.LoadLibrary(os.path.join(SO_PATH, filename))
-
-GO_SIGNER.SignURL.restype = POINTER(c_char)
-GO_SIGNER.SignURL.argtypes = [
-    POINTER(c_char),
-    POINTER(c_char),
-    POINTER(c_char),
-    POINTER(c_char),
-    c_int
-]
-
-GO_SIGNER.SignRequest.restype = POINTER(c_char)
-GO_SIGNER.SignRequest.argtypes = [
-    POINTER(c_char),
-    POINTER(c_char),
-    POINTER(c_char),
-    POINTER(c_char)
-]
-
 
 class EscherSigner:
     def __init__(

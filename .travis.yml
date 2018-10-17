@@ -1,0 +1,14 @@
+language: python
+python:
+  - '3.6'
+install:
+  - 'pip install pipenv'
+  - 'pipenv sync'
+matrix:
+  os: linux
+  dist: xenial
+  services:
+    - docker
+  go: 1.11.1
+  script:
+    - make build
