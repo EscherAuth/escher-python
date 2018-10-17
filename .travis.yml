@@ -4,7 +4,6 @@ dist: trusty
 services:
   - docker
 go: 1.11.1
-python: '3.6'
 before_install:
   - sudo apt-get install python3 python3-pip
 install:
@@ -12,5 +11,5 @@ install:
   - pip3 install --user pipenv
   - pipenv sync
 script: 
-  - make build
-  - make test
+  - pipenv run make build
+  - pipenv run make test
