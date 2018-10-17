@@ -6,6 +6,7 @@ matrix:
       services:
         - docker
       go: 1.11.1
+      install: go get github.com/karalabe/xgo
       script: make build
 
     - language: python
