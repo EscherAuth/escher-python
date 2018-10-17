@@ -1,19 +1,14 @@
-matrix:
-  include:
-    - language: go
-      os: linux
-      dist: trusty
-      services:
-        - docker
-      go: 1.11.1
-      python: '3.6'
-      before_install:
-      - sudo apt-get update
-      - sudo apt-get install python3
-      install:
-        - go get github.com/karalabe/xgo
-        - 'pip3 install pipenv'
-        - 'pipenv sync'
-      script: 
-        - make build
-        - make test
+language: go
+os: linux
+dist: trusty
+services:
+  - docker
+go: 1.11.1
+python: '3.6'
+install:
+  - go get github.com/karalabe/xgo
+  - 'pip3 install pipenv'
+  - 'pipenv sync'
+script: 
+  - make build
+  - make test
