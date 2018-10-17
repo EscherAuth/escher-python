@@ -6,14 +6,11 @@ matrix:
       services:
         - docker
       go: 1.11.1
-      install: go get github.com/karalabe/xgo
-      script: make build
-
-    - language: python
-      python:
-        - '3.6'
+      python: '3.6'
       install:
+        - go get github.com/karalabe/xgo
         - 'pip install pipenv'
         - 'pipenv sync'
-      script:
+      script: 
+        - make build
         - make test
