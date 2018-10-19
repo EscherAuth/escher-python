@@ -1,7 +1,7 @@
 import datetime
 import json
 from ctypes import c_char_p, c_int, cast
-from .signer_lib_loader import load_signer_lib
+from .shared_lib_loader import load_signer_lib
 
 GO_SIGNER = load_signer_lib()
 

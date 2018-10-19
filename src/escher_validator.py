@@ -2,7 +2,7 @@ import datetime
 import json
 from urllib.parse import urlsplit, urlunsplit
 from ctypes import cast, c_char_p
-from .validator_lib_loader import load_validator_lib
+from .shared_lib_loader import load_validator_lib
 
 GO_VALIDATOR = load_validator_lib()
 
