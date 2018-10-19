@@ -2,14 +2,19 @@ language: go
 os: linux
 dist: trusty
 services:
-  - docker
+- docker
 go: 1.11.1
 before_install:
-  - sudo apt-get install python3 python3-pip
+- sudo apt-get install python3 python3-pip
 install:
-  - go get github.com/karalabe/xgo
-  - pip3 install --user pipenv
-  - pipenv sync
-script: 
-  - pipenv run make build
-  - pipenv run make test
+- go get github.com/karalabe/xgo
+- pip3 install --user pipenv
+- pipenv sync
+script:
+- pipenv run make build
+- pipenv run make test
+deploy:
+  provider: pypi
+  user: szeist
+  password:
+    secure: jIF1yxlX30vrJ3xdBnzd+8Cw6NpMB0rTw5xh4+dCb7axVq0OgYQFfuF3BrKtQl41IkZCg6aPPe59MIGZnnn0KPjtVxjVvUF5F+tdos4WfTJr653luq6PdBIZ9ACGVO8/PEyUvNct8jISbO/k9W5JDJb4CMMfhsgTbT9CD7s1ct3mLI/4h6l34PYAjl1IiYHDaJ0rCrZk3n+QTmhUdvdyqHvZb+ljp92d1U+PwpUGWE+64so5qDEh0IkRqu+M9zY0uggXROd/p+wBvmrxZFIB91vGBgW4Hf0lRHrdEXhHo8X+l+/AighJcowpKhEShnzC2ZGNyrVlfEes4Z/lfrVuJfA9Lky/euil339ilQycHLDjPOHMnheQN7g3WQNxvMIMXOfTqjFoabfMLyrVW6ysg5YNkBrfMhNwlVxewsISDYX/lWrFZjTh+lE8LFKHgYSeGTg1vx1GTm8emxFgEN/EeRF2VvTYSmb90DZZKrTEQ0wyZo9dsNh3rKIumi3d3An9nfEt3Qt8pGm5Nv57TdlyDRyJMywKdagg/OB1KaUHQKF15SVGYtDlZt3pJhTfafuxbI4PEAkrHCI8K20txKlMqSuEcJXs+8NCRdM+vy3cNH3Snsr/ADVhRN+3PD9DOBOMLqfdOd//e1US6aBG9GCUNMcAjgGsBzIJ7xVyLxLa6/E=
