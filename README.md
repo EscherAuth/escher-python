@@ -1,4 +1,4 @@
-# Escher - HTTP request signing lib
+# Escher - HTTP request signing lib [![Build Status](https://travis-ci.com/EscherAuth/escher-python.svg?branch=master)](https://travis-ci.com/EscherAuth/escher-python)
 
 Python wrapper for the [Go implementation](https://github.com/EscherAuth/escher) of the [AWS4](http://docs.aws.amazon.com/general/latest/gr/sigv4_signing.html) compatible [Escher](https://github.com/emartech/escher) HTTP request signing and authentication library.
 
